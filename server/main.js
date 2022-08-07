@@ -28,11 +28,13 @@ io.on('connection', socket => {
       console.log('New message:', msg)
       msgCache.push({
          createdAt: new Date(),
-         message: msg,
+         message: msg.message,
+         user: msg.user,
       })
       io.emit('new message', {
          createdAt: new Date(),
-         message: msg,
+         message: msg.message,
+         user: msg.user,
       })
    })
 })

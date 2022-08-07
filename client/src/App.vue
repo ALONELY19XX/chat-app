@@ -1,23 +1,33 @@
 <template>
    <div>
-      <ul class="message-list">
+      <!-- <ul class="message-list">
          <li v-for="(message, index) in chatMessages" :key="'msg' + index">
+            {{ `${message.user}: ` }}
             {{ message.message + ` (${message.createdAt})` }}
          </li>
-      </ul>
+      </ul> -->
+      <ChatBubble
+         v-for="(msg, index) in chatMessages"
+         :key="'msg-' + index"
+         :message="msg.message"
+         :user="msg.user"
+         :timestamp="msg.createdAt"
+      ></ChatBubble>
    </div>
    <div class="inputs">
       <input type="text" placeholder="Message..." v-model="inputValue" />
       <button @click="sendMessage">Send</button>
-      <button @click="getMessages">Get All Messages</button>
+      <!-- <button @click="getMessages">Get All Messages</button> -->
    </div>
 </template>
 
 <script>
 import { io } from 'socket.io-client'
 import { ref, onMounted } from 'vue'
+import ChatBubble from './components/ChatBubble.vue'
 
 export default {
+   components: { ChatBubble },
    setup() {
       const socket = ref(null)
       const inputValue = ref('')
@@ -33,7 +43,10 @@ export default {
 
       const sendMessage = () => {
          if (inputValue.value !== '') {
-            socket.value.emit('chat message', inputValue.value)
+            socket.value.emit('chat message', {
+               message: inputValue.value,
+               user: localStorage.getItem('chat-app-username'),
+            })
             inputValue.value = ''
          }
       }
