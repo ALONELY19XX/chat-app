@@ -30,12 +30,14 @@ io.on('connection', socket => {
          createdAt: new Date(),
          message: msg,
       })
-      io.emit('new message', msg)
+      io.emit('new message', {
+         createdAt: new Date(),
+         message: msg,
+      })
    })
 })
 
 app.get('/logs', (req, res) => {
-   console.log(JSON.stringify(msgCache, null, 2))
    res.json(msgCache)
 })
 
