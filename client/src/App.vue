@@ -88,5 +88,6 @@ export default {
 }
 .inputs > input {
    width: 600px;
+   margin-right: 10px;
 }
 </style>

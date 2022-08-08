@@ -13,10 +13,6 @@ app.use(cors())
 
 const msgCache = []
 
-app.get('/', (req, res) => {
-   res.send('<h1>Hello world</h1>')
-})
-
 io.on('connection', socket => {
    console.log('A user connected')
 
@@ -37,10 +33,6 @@ io.on('connection', socket => {
          user: msg.user,
       })
    })
-})
-
-app.get('/logs', (req, res) => {
-   res.json(msgCache)
 })
 
 server.listen(3000, () => {

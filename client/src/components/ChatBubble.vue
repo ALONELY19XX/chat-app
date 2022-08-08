@@ -47,18 +47,14 @@ export default {
       })
 
       const formatTimestamp = ts => {
-         const d = new Date(ts)
-         return (
-            d.getDate() +
-            '-' +
-            (d.getMonth() + 1) +
-            '-' +
-            d.getFullYear() +
-            ' ' +
-            d.getHours() +
-            ':' +
-            d.getMinutes()
-         )
+         return new Date().toLocaleDateString('en-GB', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+         })
       }
 
       return { isMessageFromThisUser, formatTimestamp }

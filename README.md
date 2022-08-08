@@ -4,4 +4,4 @@ A small chat application written in Nodejs (server) and Vue (client) using socke
 
 ## Screenshot
 
-![](./img/chat-screenshot.JPG)
+![](./img/screenshot.PNG)
